@@ -1,4 +1,5 @@
 package org.example;
+import java.math.RoundingMode;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -20,9 +21,9 @@ public class App
         System.out.print("What is the number of times the interest is compounded per year? ");
         timesCompounded = input.nextBigDecimal();
         totalAmount = principle.multiply((BigDecimal.valueOf(1)
-                .add(interestRate
-                        .divide(timesCompounded)))
-                .pow(timesCompounded.intValue() * years.intValue()));
+                .add(interestRate.divide(timesCompounded)))
+                .pow(timesCompounded.intValue() * years.intValue()))
+                .setScale(2, RoundingMode.HALF_UP);;
         System.out.println("$" + principle + " invested at " + interestRatePercent + "% for " + years + " years compounded " + timesCompounded + " times per year is " + formatter.format(totalAmount));
 
 
